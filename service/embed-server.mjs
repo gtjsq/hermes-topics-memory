@@ -86,22 +86,22 @@ let calls = 0;
 // 后面每次调用都是热的（3 ms），不会把冷启动分摊到某一轮对话上。
 // ---- 向量函数 ------------------------------------------------------------------------
 // 默认：用本地 transformers.js 现算（自包含 —— 装好依赖就能跑）。
-// 可选：设了 TOPICS_VECTOR_MODULE 就用那个模块导出的 vector()（作者自用版带了"按前 400 字"
+// 可选：设了 TOPICS_VECTOR_MODULE 就用那个模块导出的 vector()（我自用版带了"按前 400 字"
 //       的缓存；实测短句向量干净、长文糊，所以那边只喂前 400 字）。
 // ⚠⚠ 要照抄这段去建自己的池子，先读这里 ⚠⚠
-//   作者自己那份池子（1213 条记忆 / 5120 条标签）里的 512 维向量**不是**用下面这段算的：
-//       · 作者用的是 judge.mjs 里的 vector()：pooling = "cls"，而且只喂前 400 字（带缓存）
+//   我自己那份池子（1213 条记忆 / 5120 条标签）里的 512 维向量**不是**用下面这段算的：
+//       · 我用的是 judge.mjs 里的 vector()：pooling = "cls"，而且只喂前 400 字（带缓存）
 //       · 下面这段默认是：pooling = "mean"，喂全文
 //   同一句话，这两套算出来是**两组不同的数** —— 混着用不会报错，只会让检索悄悄变差。
 //   所以：要么全程用同一套（建池子用哪套，查询就必须用哪套）；
-//         要么设 TOPICS_VECTOR_MODULE 指向你自己那份 vector()（作者就是这么接的）。
-//   bge 系列官方推荐的是 cls 池化，所以作者那套更"正统"；这里留 mean 是为了让默认值不依赖外部文件。
+//         要么设 TOPICS_VECTOR_MODULE 指向你自己那份 vector()（我就是这么接的）。
+//   bge 系列官方推荐的是 cls 池化，所以我那套更"正统"；这里留 mean 是为了让默认值不依赖外部文件。
 let vector;
 if (process.env.TOPICS_VECTOR_MODULE) {
   ({ vector } = await import(process.env.TOPICS_VECTOR_MODULE));
 } else {
   const _embedder = await pipeline("feature-extraction", EMBED_MODEL, { dtype: "q8" });
-  // ⚠ 这里的 "mean" 与作者存量池子的 "cls" 不一致 —— 见上面那段说明
+  // ⚠ 这里的 "mean" 与我存量池子的 "cls" 不一致 —— 见上面那段说明
   vector = async (text) => (await _embedder(text, { pooling: "mean", normalize: true })).data;
 }
 

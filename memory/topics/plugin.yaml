@@ -9,7 +9,7 @@ description: >-
 license: MIT
 homepage: https://github.com/gtjsq/hermes-topics-memory
 tags: [memory, context, experimental, research]
-# 说明：作者名刻意不写进 manifest —— 这份仓库的用途是"把灵感摊开给人看"，
+# 说明：刻意不写我名 —— 这份仓库的用途是"把灵感摊开给人看"，
 #       不是发布一个可以拿去装的产品。
 
 # ⚠⚠ 必读：本插件是 **memory provider** —— 官方规定这类插件
