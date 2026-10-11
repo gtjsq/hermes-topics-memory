@@ -1,0 +1,44 @@
+# ============================================================
+# 真实数据 —— 绝不提交（这些是个人记忆，不是代码）
+# ============================================================
+topics-data/
+plugin-data/
+library.json
+mem-multichannel*.json
+mem-important.json
+mem-important.json.tmp
+conversations*.json
+inverted-index.json
+last-candidates.json
+
+# ============================================================
+# 宿主配置与密钥
+# ============================================================
+config.yaml
+.env
+*.key
+
+# ============================================================
+# 运行痕迹（作者的工作现场，不该出现在仓库里）
+# ============================================================
+*.log
+*.out
+*.proof
+*.stamp
+*.tmp
+__pycache__/
+*.pyc
+
+# 备份文件 —— 一个都不要提交
+*.bak
+*.bak-*
+*.bak-before-*
+*.disabled-*
+*.snapshot-*
+state.db*
+rolled-ids-*.json
+
+# 本地环境
+.venv/
+node_modules/
+service/models/

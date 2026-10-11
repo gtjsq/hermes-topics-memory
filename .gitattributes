@@ -1,0 +1,12 @@
+# 统一换行：仓库里一律按 LF 存、也按 LF 取，避免 Windows / Linux 之间互相
+# 打开一次就把整个文件标成"改了"（git 默认在 Windows 上会把换行转成 CRLF）。
+* text=auto eol=lf
+
+# 二进制文件不要被当成文本处理
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.onnx binary
+*.gz binary
+*.zip binary

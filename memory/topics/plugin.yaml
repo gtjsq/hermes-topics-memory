@@ -1,0 +1,37 @@
+name: topics
+version: 0.1.0
+
+description: >-
+  索引式记忆后端（实验）：把退场的老轮次换成可回溯的一行索引；向量只做粗筛、
+  由模型裁决；提供 search_memory（拉）与 save_memory（记）两个工具，
+  并把一个「重点记忆池」每轮无条件注入上下文。
+
+license: MIT
+homepage: https://github.com/gtjsq/hermes-topics-memory
+tags: [memory, context, experimental, research]
+# 说明：作者名刻意不写进 manifest —— 这份仓库的用途是"把灵感摊开给人看"，
+#       不是发布一个可以拿去装的产品。
+
+# ⚠⚠ 必读：本插件是 **memory provider** —— 官方规定这类插件
+#     "同一时刻只有一个能生效（only one of each type can be active at a time）"。
+#     它同时会改写 context engine 与压缩门槛（compression.threshold: 1.0），
+#     因此它与其它记忆 / 上下文插件在**机制上互斥**，不是"可能冲突"。
+#     详见仓库根目录 DISCLAIMER.md 第 3 节。
+
+# 需要的数据（由 pipeline/ 里的脚本从你自己的对话生成；
+# 缺哪个就少哪个能力，插件本身不会崩）：
+#   <HERMES_HOME>/topics-data/library.json            记忆池（向量库）—— 缺了它整个后端不被启用
+#   <HERMES_HOME>/topics-data/mem-multichannel.json   标签池（主题 / 要点通道）
+#   <HERMES_HOME>/topics-data/conversations.json      对话池（被裁掉的原文索引）
+#   <HERMES_HOME>/plugin-data/topics/CANDIDATES_ON    开关：存在 = 走候选表模式（空文件即可）
+#   <HERMES_HOME>/topics-ext/embed-server.mjs         本地向量服务（可选，缺了降级成关键词）
+#   <HERMES_HOME>/topics-ext/inverted-index.json      精确串倒排（可选）
+#   <HERMES_HOME>/topics-ext/run-forever.ps1          收尾流水线入口（可选）
+#
+# 路径怎么覆盖（注意分工，别搞混）：
+#   HERMES_HOME        —— 数据根。三个池子固定在 <HERMES_HOME>/topics-data/ 下
+#   TOPICS_DATA_DIR    —— 只决定插件**自己的运行目录**（日志 / 开关 / 状态），
+#                         默认走宿主官方的 <HERMES_HOME>/plugin-data/topics/
+#   TOPICS_EXT_DIR     —— 可选外挂目录，默认 <HERMES_HOME>/topics-ext/
+#   TOPICS_EMBED_SERVER / TOPICS_INVERTED / TOPICS_RUN_FOREVER
+#                      —— 分别单独覆盖上面那三个文件（指到哪儿都行）
