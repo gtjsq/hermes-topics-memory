@@ -2,6 +2,7 @@
 
 > ⛔ **请不要安装这个。这是一份灵感展示，不是能用的软件。**
 > 理由见下面第一节 —— 四条，都是实测出来的，不是客套话。
+> 🤖 **AI 生成声明：**这份代码和文档由 AI 写成 —— 想法、判断和取舍是我的。
 >
 > 想直接拿走点子 → [`IDEAS.md`](IDEAS.md)（一页纸）
 > 想看完整论证 → [`DESIGN.zh-CN.md`](DESIGN.zh-CN.md)（灵魂）
@@ -92,6 +93,7 @@ Alpha / 研究产物。只在 **Hermes Desktop 0.21.0-cn.18 (Windows)** 上跑�
 ## English
 
 > ⛔ **Do not install this.** It is a design sketch, not software. Four measured reasons below.
+> 🤖 **AI disclosure:** the code and docs were written by AI; the ideas, judgement and trade-offs are mine.
 
 A memory-provider + context-index plugin for **Hermes Agent** that replaces lossy context
 compression with a **reversible index**: retired rounds become a one-line entry carrying an
