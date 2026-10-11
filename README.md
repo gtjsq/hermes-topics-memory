@@ -14,8 +14,6 @@
 （`…｜原文 #9402267`），原文留在库里，需要时按号取回 ——
 而不是把原文烧成一段摘要、再塞回工作台。
 
-我当时的原话（保留原始表述）：**"AI 只有拥有记忆系统并强介入才算完整体。"**
-
 ---
 
 ## 一、为什么你不该装
@@ -59,7 +57,7 @@
 | 在仓库里 | 不在仓库里 |
 |---|---|
 | 插件的实现（`memory/topics/`）—— 拿来读 | **任何真实记忆数据**（池子是私人笔记，见 `samples/`） |
-| 本地向量服务的参考实现（`service/`） | 向量**模型权重**（要自己下） |
+| 本地向量服务的参考实现（`service/`） | 向量**模型权重**（要自己下；BGE 系列有自己的许可，见 Hugging Face 的 model card） |
 | 池子的**结构说明**（`pipeline/README.md`、`samples/README.md`） | 生成池子的脚本（我自用、没整理，见上面第 2 条） |
 | 一页纸的点子（`IDEAS.md`）、设计理念（`DESIGN.zh-CN.md`）、越界清单（`HOST-INTERNALS.md`） | 你的 `config.yaml`（里面有 API key） |
 
@@ -89,15 +87,6 @@ Alpha / 研究产物。只在 **Hermes Desktop 0.21.0-cn.18 (Windows)** 上跑�
    然后在插件的运行目录里建一个空文件 `CANDIDATES_ON`。
 4. 重启 Hermes。日志里应该出现 `候选表：粗筛门槛 0.42 → …`。
 
-## 六、许可
-
-MIT —— 见 [`LICENSE`](LICENSE)。
-**这意味着你可以拿走、改、甚至闭源商用。** 我知道，也接受这一点：
-这东西是个半成品，能被人拿去用，比锁起来好。
-（以后再发布的重要成果可能会换一个限制商用的许可；但**已经发布的这些版本会一直是 MIT**。）
-
-向量模型有自己的许可（BGE 系列请看 Hugging Face 上的 model card）。
-
 ---
 
 ## English
@@ -125,6 +114,3 @@ Not affiliated with, endorsed by, or supported by Nous Research.
 (reversible indexing; vectors for recall and the model for precision; push *and* pull;
 an always-injected "important" pool with provenance; telling the model it reads an index).
 Then [`DESIGN.zh-CN.md`](DESIGN.zh-CN.md) for the full argument (Chinese).
-
-**License:** MIT — you may take it, change it, and even ship it closed-source. I know
-and is fine with that; it is a half-finished experiment, and being used beats being locked up.
